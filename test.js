@@ -48,6 +48,11 @@ describe('metadata.parse()', function() {
     });
   });
 
+  it('returns RGB for sRGB colorspace', function() {
+    assert.deepEqual(metadata.parse('colorspace=sRGB'), {
+      colorspace: 'RGB'
+    });
+  });
 });
 
 describe('metadata()', function() {
@@ -58,7 +63,7 @@ describe('metadata()', function() {
       assert.equal(data.name, '');
       assert.equal(data.size, '4.296MB');
       assert.equal(data.format, 'JPEG');
-      assert.equal(data.colorspace, 'sRGB');
+      assert.equal(data.colorspace, 'RGB');
       assert.equal(data.height, 3456);
       assert.equal(data.width, 5184);
       assert.equal(data.orientation, 'TopLeft');

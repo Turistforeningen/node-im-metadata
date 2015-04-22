@@ -50,5 +50,9 @@ module.exports.parse = function(metadata) {
     ret.size = ret.size.substr(0, ret.size.length - 1);
   }
 
+  if (ret.colorspace && ret.colorspace === 'sRGB') {
+    ret.colorspace = 'RGB';
+  }
+
   return ret;
 };
