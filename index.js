@@ -2,8 +2,8 @@ var exec = require('child_process').exec, child;
 
 module.exports = function(src, opts, cb) {
   if (!cb) {
-    var cb = opts;
-    var opts = {};
+    cb = opts;
+    opts = {};
   }
 
   var cmd = module.exports.cmd(src, opts);
@@ -15,10 +15,10 @@ module.exports = function(src, opts, cb) {
 
     return cb(null, module.exports.parse(stdout));
   });
-}
+};
 
 module.exports.cmd = function(src, opts) {
-  var opts = opts || {};
+  opts = opts || {};
   var format = [
     'name=%[name]',
     'size=%[size]',
@@ -31,7 +31,7 @@ module.exports.cmd = function(src, opts) {
   ].join("\n");
 
   return 'identify -format "' + format + '" ' + src;
-}
+};
 
 module.exports.parse = function(metadata) {
   var lines = metadata.split('\n'), ret = {}, i;
@@ -47,4 +47,4 @@ module.exports.parse = function(metadata) {
   if (ret.height) { ret.height = parseInt(ret.height, 10); }
 
   return ret;
-}
+};

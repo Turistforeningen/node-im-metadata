@@ -1,3 +1,5 @@
+/*jshint laxcomma:true */
+
 var assert = require('assert');
 var metadata = require('.');
 
@@ -54,7 +56,7 @@ describe('metadata()', function() {
       assert.equal(data.width, 5184);
       assert.equal(data.orientation, 'TopLeft');
 
-      done()
+      done();
     });
   });
 });
