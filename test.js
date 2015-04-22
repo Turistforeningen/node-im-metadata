@@ -22,6 +22,12 @@ describe('metadata.cmd()', function() {
 });
 
 describe('metadata.parse()', function() {
+  it('returns object for single value', function() {
+    assert.deepEqual(metadata.parse('foo=bar'), {
+      foo: 'bar'
+    });
+  });
+
   it('returns object for metadata string', function() {
     assert.deepEqual(metadata.parse('foo=bar\nbar=foo'), {
       foo: 'bar',
@@ -33,12 +39,6 @@ describe('metadata.parse()', function() {
     assert.deepEqual(metadata.parse('foo=bar\n\nbar=foo\n\n'), {
       foo: 'bar',
       bar: 'foo'
-    });
-  });
-
-  it('returns object for single value', function() {
-    assert.deepEqual(metadata.parse('foo=bar'), {
-      foo: 'bar'
     });
   });
 
