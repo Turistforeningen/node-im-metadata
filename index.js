@@ -45,6 +45,7 @@ module.exports.parse = function(metadata) {
 
   if (ret.width) { ret.width = parseInt(ret.width, 10); }
   if (ret.height) { ret.height = parseInt(ret.height, 10); }
+
   if (ret.size && ret.size.substr(ret.size.length - 2) === "BB") {
     ret.size = ret.size.substr(0, ret.size.length - 1);
   }
