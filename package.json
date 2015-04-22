@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Turistforeningen/node-im-identify.git"
+    "url": "git@github.com:Turistforeningen/node-im-metadata.git"
   },
   "keywords": [
     "ImageMagick",
@@ -20,9 +20,9 @@
   "author": "Hans Kristian Flaatten <hans.kristian.flaatten@turistforeningen.no>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Turistforeningen/node-im-identify/issues"
+    "url": "https://github.com/Turistforeningen/node-im-metadata/issues"
   },
-  "homepage": "https://github.com/Turistforeningen/node-im-identify",
+  "homepage": "https://github.com/Turistforeningen/node-im-metadata",
   "devDependencies": {
     "mocha": "^2.2.4"
   }
