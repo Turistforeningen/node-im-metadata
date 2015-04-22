@@ -1,7 +1,7 @@
 /*jshint laxbreak:true */
 
 var assert = require('assert');
-var metadata = require('.');
+var metadata = require('./index');
 
 describe('metadata.cmd()', function() {
   it('returns command without exif data', function() {
