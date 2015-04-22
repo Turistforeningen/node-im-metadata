@@ -1,4 +1,4 @@
-/*jshint laxcomma:true */
+/*jshint laxbreak:true */
 
 var assert = require('assert');
 var metadata = require('.');
