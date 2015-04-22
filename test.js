@@ -41,6 +41,13 @@ describe('metadata.parse()', function() {
       foo: 'bar'
     });
   });
+
+  it('return correct size for bogus value', function() {
+    assert.deepEqual(metadata.parse('size=4.296MBB'), {
+      size: '4.296MB'
+    });
+  });
+
 });
 
 describe('metadata()', function() {
