@@ -22,34 +22,41 @@ describe('metadata.cmd()', function() {
 });
 
 describe('metadata.parse()', function() {
+  var path = '/foo/bar/baz.jpg';
+
   it('returns object for single value', function() {
-    assert.deepEqual(metadata.parse('foo=bar'), {
+    assert.deepEqual(metadata.parse(path, 'foo=bar'), {
+      path: path,
       foo: 'bar'
     });
   });
 
   it('returns object for metadata string', function() {
-    assert.deepEqual(metadata.parse('foo=bar\nbar=foo'), {
+    assert.deepEqual(metadata.parse(path, 'foo=bar\nbar=foo'), {
+      path: path,
       foo: 'bar',
       bar: 'foo'
     });
   });
 
   it('skips empty lines', function() {
-    assert.deepEqual(metadata.parse('foo=bar\n\nbar=foo\n\n'), {
+    assert.deepEqual(metadata.parse(path, 'foo=bar\n\nbar=foo\n\n'), {
+      path: path,
       foo: 'bar',
       bar: 'foo'
     });
   });
 
   it('returns correct size for bogus value', function() {
-    assert.deepEqual(metadata.parse('size=4.296MBB'), {
+    assert.deepEqual(metadata.parse(path, 'size=4.296MBB'), {
+      path: path,
       size: '4.296MB'
     });
   });
 
   it('returns RGB for sRGB colorspace', function() {
-    assert.deepEqual(metadata.parse('colorspace=sRGB'), {
+    assert.deepEqual(metadata.parse(path, 'colorspace=sRGB'), {
+      path: path,
       colorspace: 'RGB'
     });
   });
@@ -60,6 +67,7 @@ describe('metadata()', function() {
     metadata('./assets/image.jpg', { exif: true }, function(err, data) {
       assert.ifError(err);
 
+      assert.equal(data.path, './assets/image.jpg');
       assert.equal(data.name, '');
       assert.equal(data.size, '4.296MB');
       assert.equal(data.format, 'JPEG');
