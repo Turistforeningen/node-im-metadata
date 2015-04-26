@@ -1,12 +1,12 @@
 var exec = require('child_process').exec, child;
 
-module.exports = function(src, opts, cb) {
+module.exports = function(path, opts, cb) {
   if (!cb) {
     cb = opts;
     opts = {};
   }
 
-  var cmd = module.exports.cmd(src, opts);
+  var cmd = module.exports.cmd(path, opts);
   opts.timeout = opts.timeout || 5000;
 
   exec(cmd, opts, function(e, stdout, stderr) {
@@ -17,7 +17,7 @@ module.exports = function(src, opts, cb) {
   });
 };
 
-module.exports.cmd = function(src, opts) {
+module.exports.cmd = function(path, opts) {
   opts = opts || {};
   var format = [
     'name=%[name]',
@@ -30,7 +30,7 @@ module.exports.cmd = function(src, opts) {
     (opts.exif ? '%[exif:*]' : '')
   ].join("\n");
 
-  return 'identify -format "' + format + '" ' + src;
+  return 'identify -format "' + format + '" ' + path;
 };
 
 module.exports.parse = function(metadata) {
