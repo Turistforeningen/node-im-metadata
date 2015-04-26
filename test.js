@@ -57,7 +57,7 @@ describe('metadata.parse()', function() {
 
 describe('metadata()', function() {
   it('returns metadata for image', function(done) {
-    metadata('./image.jpg', { exif: true }, function(err, data) {
+    metadata('./assets/image.jpg', { exif: true }, function(err, data) {
       assert.ifError(err);
 
       assert.equal(data.name, '');
