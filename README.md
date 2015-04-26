@@ -36,6 +36,7 @@ Return metadata **object** for a given `src` image.
 
 Returns an `object` with parsed metada:
 
+* **string** `path` - original image path
 * **string** `name` - original image name
 * **string** `size` - image file size (ex. `4.296MB`)
 * **string** `format` - image format (`JPEG`, `PNG`, `TIFF` etc.)

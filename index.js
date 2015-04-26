@@ -13,7 +13,7 @@ module.exports = function(path, opts, cb) {
     if (e) { return cb(e); }
     if (stderr) { return cb(new Error(stderr)); }
 
-    return cb(null, module.exports.parse(stdout));
+    return cb(null, module.exports.parse(path, stdout));
   });
 };
 
@@ -33,8 +33,10 @@ module.exports.cmd = function(path, opts) {
   return 'identify -format "' + format + '" ' + path;
 };
 
-module.exports.parse = function(metadata) {
-  var lines = metadata.split('\n'), ret = {}, i;
+module.exports.parse = function(path, stdout) {
+  var lines = stdout.split('\n');
+  var ret = {path: path};
+  var i;
 
   for (i = 0; i < lines.length; i++) {
     if (lines[i]) {
