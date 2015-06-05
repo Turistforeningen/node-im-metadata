@@ -48,9 +48,10 @@ Returns an `object` with parsed metada:
 #### Example
 
 ```js
-metadata('/path/to/image.jpg', function(error, metadata) {
+metadata('/path/to/image.jpg', {exif: true}, function(error, metadata) {
   if (error) { console.error(error); }
   console.log(metadata);
+  console.log(metadata.exif);
 });
 ```
 
