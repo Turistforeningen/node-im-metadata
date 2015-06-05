@@ -4,7 +4,8 @@
   "description": "Retrieve image metadata using ImageMagick's identify command",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha test.js",
+    "watch": "./node_modules/.bin/mocha -w test.js"
   },
   "repository": {
     "type": "git",
