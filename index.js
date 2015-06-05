@@ -41,7 +41,19 @@ module.exports.parse = function(path, stdout) {
   for (i = 0; i < lines.length; i++) {
     if (lines[i]) {
       lines[i] = lines[i].split('=');
-      ret[lines[i][0]] = lines[i][1];
+
+      // Parse exif metadata keys
+      if (lines[i][0].substr(0, 5) === 'exif:') {
+        if (!ret.exif) {
+          ret.exif = {};
+        }
+
+        ret.exif[lines[i][0].substr(5)] = lines[i][1];
+
+      // Parse normal metadata keys
+      } else {
+        ret[lines[i][0]] = lines[i][1];
+      }
     }
   }
 
