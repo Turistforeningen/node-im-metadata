@@ -64,6 +64,30 @@ describe('metadata.parse()', function() {
 
 describe('metadata()', function() {
   it('returns metadata for image', function(done) {
+    metadata('./assets/image.jpg', { exif: false }, function(err, data) {
+      assert.ifError(err);
+
+      assert.equal(data.path, './assets/image.jpg');
+      assert.equal(data.name, '');
+      assert.equal(data.size, '4.296MB');
+      assert.equal(data.format, 'JPEG');
+      assert.equal(data.colorspace, 'RGB');
+      assert.equal(data.height, 3456);
+      assert.equal(data.width, 5184);
+
+      // Ok, I give up. For some reason there is this inconsistency between
+      // ImageMagick identify versions which yilds undefined/empty string for
+      // the orientation on the CI server. I can not find any reference on this
+      // issue which is why this test will not be run on the CI server.
+      if (!process.env.CI) { assert.equal(data.orientation, 'TopLeft'); }
+
+      assert.equal(typeof data.exif, 'undefined');
+
+      done();
+    });
+  });
+
+  it('returns metadata for image with exif data', function(done) {
     metadata('./assets/image.jpg', { exif: true }, function(err, data) {
       assert.ifError(err);
 
@@ -80,6 +104,10 @@ describe('metadata()', function() {
       // the orientation on the CI server. I can not find any reference on this
       // issue which is why this test will not be run on the CI server.
       if (!process.env.CI) { assert.equal(data.orientation, 'TopLeft'); }
+
+      assert.equal(typeof data.exif, 'object');
+      assert.equal(Object.keys(data.exif).length, 36);
+      assert.equal(data.exif.ApertureValue, '37/8');
 
       done();
     });
