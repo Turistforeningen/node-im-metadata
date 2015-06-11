@@ -68,5 +68,9 @@ module.exports.parse = function(path, stdout) {
     ret.colorspace = 'RGB';
   }
 
+  if (ret.orientation === 'Undefiend') {
+    ret.orientation = '';
+  }
+
   return ret;
 };

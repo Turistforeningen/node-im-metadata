@@ -60,6 +60,14 @@ describe('metadata.parse()', function() {
       colorspace: 'RGB'
     });
   });
+
+  it('return "" for Undefiend orientation', function() {
+    assert.deepEqual(metadata.parse(path, 'orientation=Undefiend'), {
+      path: path,
+      orientation: ''
+    });
+  });
+
 });
 
 describe('metadata()', function() {
