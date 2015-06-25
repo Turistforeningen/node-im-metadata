@@ -8,6 +8,11 @@
 
 Retrieve image metadata as a JSON object using ImageMagick's `identify` command.
 
+## Requiremets
+
+* Node.JS v0.10 or newer
+* ImageMagick v6.8 or newer
+
 ## Install
 
 ```
