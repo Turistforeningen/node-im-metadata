@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Turistforeningen/node-im-metadata",
   "devDependencies": {
-    "jshint": "^2.8.0",
-    "mocha": "^2.2.4"
+    "jshint": "~2",
+    "mocha": "~2"
   }
 }
