@@ -1,17 +1,25 @@
-box: wercker/nodejs
+box: starefossen/iojs-imagemagick:1-6
 build:
   steps:
-    - jshint:
-        version: 2.6
-
-    - npm-install
-    - npm-test
-
     - script:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+    - script:
+        name: echo imagemagick information
+        code: |
+            convert --version
+
+    - npm-install
+
+    - script:
+        name: jshint
+        code: |
+            npm run hint
+
+    - npm-test
 
   after-steps:
     - turistforeningen/slack-notifier:
@@ -19,5 +27,4 @@ build:
 
 deploy:
   steps:
-    - kwakayama/npm-publish
-
+    - turistforeningen/npm-publish
