@@ -1,3 +1,5 @@
+/*jshint laxbreak:true */
+
 var exec = require('child_process').exec, child;
 
 module.exports = function(path, opts, cb) {
@@ -13,7 +15,7 @@ module.exports = function(path, opts, cb) {
     if (e) { return cb(e); }
     if (stderr) { return cb(new Error(stderr)); }
 
-    return cb(null, module.exports.parse(path, stdout));
+    return cb(null, module.exports.parse(path, stdout, opts));
   });
 };
 
@@ -33,7 +35,7 @@ module.exports.cmd = function(path, opts) {
   return 'identify -format "' + format + '" ' + path;
 };
 
-module.exports.parse = function(path, stdout) {
+module.exports.parse = function(path, stdout, opts) {
   var lines = stdout.split('\n');
   var ret = {path: path};
   var i;
@@ -70,6 +72,17 @@ module.exports.parse = function(path, stdout) {
 
   if (ret.orientation === 'Undefined') {
     ret.orientation = '';
+  }
+
+  if (opts && opts.autoOrient
+      && ( ret.orientation === 'LeftTop'
+        || ret.orientation === 'RightTop'
+        || ret.orientation === 'LeftBottom'
+        || ret.orientation === 'RightBottom')) {
+
+    ret.width  = ret.width + ret.height;
+    ret.height = ret.width - ret.height;
+    ret.width  = ret.width - ret.height;
   }
 
   return ret;
