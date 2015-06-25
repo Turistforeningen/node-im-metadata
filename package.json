@@ -28,5 +28,9 @@
   "devDependencies": {
     "jshint": "~2",
     "mocha": "~2"
+  },
+  "engines": {
+    "node": ">=0.10",
+    "iojs": ">=1.0.0"
   }
 }
