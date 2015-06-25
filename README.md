@@ -27,6 +27,7 @@ Return metadata **object** for a given `src` image.
 * **string** `src` - path to the image on disk
 * **object** `opts` - metadata parsing options
   * **boolean** `exif` - return exif data or not (default `false`)
+  * **boolean** `autoOrient` - auto-orient height/width (default `false`)
   * **integer** `timeout` - command timeout length (default `5000`)
 * **function** `callback` - callback function (**Error** `error`, **object** `data`)
   * **Error** `error` - error output if command failed
