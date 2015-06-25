@@ -68,6 +68,33 @@ describe('metadata.parse()', function() {
     });
   });
 
+  it('returns height and widt for auto-orient', function() {
+    var meta = 'width=100\nheight=150\norientation=';
+    var opts = {autoOrient: true};
+
+    var orientation = [
+      'TopLeft', 'TopRight', 'BottomRight', 'BottomLeft',
+      'LeftTop', 'RightTop', 'RightBottom', 'LeftBottom'
+    ];
+
+    for (var i = 0; i < 4; i++) {
+      assert.deepEqual(metadata.parse(path, meta + orientation[i], opts), {
+        height: 150,
+        width: 100,
+        path: path,
+        orientation: orientation[i]
+      });
+    }
+
+    for (var j = 4; j < 8; j++) {
+      assert.deepEqual(metadata.parse(path, meta + orientation[j], opts), {
+        height: 100,
+        width: 150,
+        path: path,
+        orientation: orientation[j]
+      });
+    }
+  });
 });
 
 describe('metadata()', function() {
@@ -116,6 +143,17 @@ describe('metadata()', function() {
       assert.equal(typeof data.exif, 'object');
       assert.equal(Object.keys(data.exif).length, 36);
       assert.equal(data.exif.ApertureValue, '37/8');
+
+      done();
+    });
+  });
+
+  it('returns correct height and width for auto-orient', function(done) {
+    metadata('./assets/orient.jpg', { autoOrient: true }, function(err, data) {
+      assert.ifError(err);
+
+      assert.equal(data.height, 3264);
+      assert.equal(data.width, 2448);
 
       done();
     });
