@@ -61,7 +61,7 @@ describe('metadata.parse()', function() {
     });
   });
 
-  it('return "" for Undefined orientation', function() {
+  it('returns "" for Undefined orientation', function() {
     assert.deepEqual(metadata.parse(path, 'orientation=Undefined'), {
       path: path,
       orientation: ''
