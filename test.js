@@ -5,7 +5,7 @@ var metadata = require('./index');
 
 describe('metadata.cmd()', function() {
   it('returns command without exif data', function() {
-    var cmd = 'identify -format "name=%[name]\nsize=%[size]\nformat=%m\n'
+    var cmd = 'identify -format "name=\nsize=%[size]\nformat=%m\n'
             + 'colorspace=%[colorspace]\nheight=%[height]\nwidth=%[width]\n'
             + 'orientation=%[orientation]\n" /foo/bar/baz';
 
@@ -13,7 +13,7 @@ describe('metadata.cmd()', function() {
   });
 
   it('returns command with exif data', function() {
-    var cmd = 'identify -format "name=%[name]\nsize=%[size]\nformat=%m\n'
+    var cmd = 'identify -format "name=\nsize=%[size]\nformat=%m\n'
             + 'colorspace=%[colorspace]\nheight=%[height]\nwidth=%[width]\n'
             + 'orientation=%[orientation]\n%[exif:*]" /foo/bar/baz';
 
