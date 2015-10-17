@@ -44,7 +44,7 @@ Returns an `object` with parsed metada:
 
 * **string** `path` - original image path
 * **string** `name` - original image name
-* **string** `size` - image file size (ex. `4.296MB`)
+* **string** `size` - image file size in bytes (ex. `4504682`)
 * **string** `format` - image format (`JPEG`, `PNG`, `TIFF` etc.)
 * **string** `colorspace` - image colorspace (`RGB`, `CMYK` etc.)
 * **integer** `height` - image pixel height

@@ -50,7 +50,14 @@ describe('metadata.parse()', function() {
   it('returns correct size for bogus value', function() {
     assert.deepEqual(metadata.parse(path, 'size=4.296MBB'), {
       path: path,
-      size: '4.296MB'
+      size: 4504682
+    });
+  });
+
+  it('returns size in bytes', function() {
+    assert.deepEqual(metadata.parse(path, 'size=20MB'), {
+      path: path,
+      size: 20 * 1024 * 1024
     });
   });
 
@@ -104,7 +111,7 @@ describe('metadata()', function() {
 
       assert.equal(data.path, './assets/image.jpg');
       assert.equal(data.name, '');
-      assert.equal(data.size, '4.296MB');
+      assert.equal(data.size, 4504682);
       assert.equal(data.format, 'JPEG');
       assert.equal(data.colorspace, 'RGB');
       assert.equal(data.height, 3456);
@@ -123,7 +130,7 @@ describe('metadata()', function() {
 
       assert.equal(data.path, './assets/image.jpg');
       assert.equal(data.name, '');
-      assert.equal(data.size, '4.296MB');
+      assert.equal(data.size, 4504682);
       assert.equal(data.format, 'JPEG');
       assert.equal(data.colorspace, 'RGB');
       assert.equal(data.height, 3456);
