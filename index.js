@@ -1,5 +1,6 @@
 /*jshint laxbreak:true */
 
+var sizeParser = require('filesize-parser');
 var exec = require('child_process').exec, child;
 
 module.exports = function(path, opts, cb) {
@@ -62,8 +63,12 @@ module.exports.parse = function(path, stdout, opts) {
   if (ret.width) { ret.width = parseInt(ret.width, 10); }
   if (ret.height) { ret.height = parseInt(ret.height, 10); }
 
-  if (ret.size && ret.size.substr(ret.size.length - 2) === "BB") {
-    ret.size = ret.size.substr(0, ret.size.length - 1);
+  if (ret.size) {
+    if (ret.size.substr(ret.size.length - 2) === 'BB') {
+      ret.size = ret.size.substr(0, ret.size.length - 1);
+    }
+
+    ret.size = parseInt(sizeParser(ret.size));
   }
 
   if (ret.colorspace && ret.colorspace === 'sRGB') {
