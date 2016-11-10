@@ -31,13 +31,13 @@ module.exports.cmd = function(path, opts) {
     'width=%[width]',
     'orientation=%[orientation]',
     (opts.exif ? '%[exif:*]' : '')
-  ].join("\n");
+  ].join("\s\s\s");
 
   return 'identify -format "' + format + '" ' + path;
 };
 
 module.exports.parse = function(path, stdout, opts) {
-  var lines = stdout.split('\n');
+  var lines = stdout.split('\s\s\s');
   var ret = {path: path};
   var i;
 
