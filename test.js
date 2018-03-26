@@ -7,7 +7,7 @@ describe('metadata.cmd()', function() {
   it('returns command without exif data', function() {
     var cmd = 'convert -ping /foo/bar/baz -format "name=\nsize=%b\nformat=%m\n'
             + 'colorspace=%[colorspace]\nheight=%[height]\nwidth=%[width]\n'
-            + 'orientation=%[orientation]\n" info:';
+            + 'orientation=%[orientation]\n" -precision 12 info:';
 
     assert.equal(metadata.cmd('/foo/bar/baz'), cmd);
   });
@@ -15,7 +15,7 @@ describe('metadata.cmd()', function() {
   it('returns command with exif data', function() {
     var cmd = 'convert -ping /foo/bar/baz -format "name=\nsize=%b\nformat=%m\n'
             + 'colorspace=%[colorspace]\nheight=%[height]\nwidth=%[width]\n'
-            + 'orientation=%[orientation]\n%[exif:*]" info:';
+            + 'orientation=%[orientation]\n%[exif:*]" -precision 12 info:';
 
     assert.equal(metadata.cmd('/foo/bar/baz', {exif: true}), cmd);
   });
@@ -111,9 +111,7 @@ describe('metadata()', function() {
 
       assert.equal(data.path, './assets/image.jpg');
       assert.equal(data.name, '');
-      // allow for precision errors. image magick returns 5 decimal places for
-      // me locally on OSX vs 3 decimal places on linux.
-      assert.equal(data.size - data.size % 1000, 4504000);
+      assert.equal(data.size, 4295828);
       assert.equal(data.format, 'JPEG');
       assert.equal(data.colorspace, 'RGB');
       assert.equal(data.height, 3456);
@@ -132,7 +130,7 @@ describe('metadata()', function() {
 
       assert.equal(data.path, './assets/image.jpg');
       assert.equal(data.name, '');
-      assert.equal(data.size - data.size % 1000, 4504000);
+      assert.equal(data.size, 4295828);
       assert.equal(data.format, 'JPEG');
       assert.equal(data.colorspace, 'RGB');
       assert.equal(data.height, 3456);
