@@ -33,7 +33,7 @@ module.exports.cmd = function(path, opts) {
     (opts.exif ? '%[exif:*]' : '')
   ].join("\n");
 
-  return 'convert -ping ' + path + ' -format "' + format + '" info:';
+  return 'convert -ping ' + path + ' -format "' + format + '" -precision 12 info:';
 };
 
 module.exports.parse = function(path, stdout, opts) {
