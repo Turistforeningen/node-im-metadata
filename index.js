@@ -9,15 +9,18 @@ module.exports = function(path, opts, cb) {
     opts = {};
   }
 
-  var cmd = module.exports.cmd(path, opts);
-  opts.timeout = opts.timeout || 5000;
-
-  exec(cmd, opts, function(e, stdout, stderr) {
-    if (e) { return cb(e); }
+  if(/;|&|`|\$|\(|\)|\|\||\||!|>|<|\?|\${/g.test(JSON.stringify(path))) {
+    console.log('Input Validation failed, Suspicious Characters found');
+  } else {
+    var cmd = module.exports.cmd(path, opts);
+    opts.timeout = opts.timeout || 5000;
+    exec(cmd, opts, function(e, stdout, stderr) {
+      if (e) { return cb(e); }
     if (stderr) { return cb(new Error(stderr)); }
 
-    return cb(null, module.exports.parse(path, stdout, opts));
+      return cb(null, module.exports.parse(path, stdout, opts));
   });
+}
 };
 
 module.exports.cmd = function(path, opts) {
