@@ -1,6 +1,5 @@
 # im-metadata
 
-[![Build status](https://img.shields.io/wercker/ci/.svg "Build status")](https://app.wercker.com/project/bykey/)
 [![NPM downloads](https://img.shields.io/npm/dm/im-metadata.svg "NPM downloads")](https://www.npmjs.com/package/im-metadata)
 [![NPM version](https://img.shields.io/npm/v/im-metadata.svg "NPM version")](https://www.npmjs.com/package/im-metadata)
 [![Node version](https://img.shields.io/node/v/im-metadata.svg "Node version")](https://www.npmjs.com/package/im-metadata)
