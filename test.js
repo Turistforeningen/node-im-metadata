@@ -138,7 +138,7 @@ describe('metadata()', function() {
       assert.equal(data.orientation, 'TopLeft');
 
       assert.equal(typeof data.exif, 'object');
-      assert.equal(Object.keys(data.exif).length, 36);
+      assert.equal(Object.keys(data.exif).length, 41);
       assert.equal(data.exif.ApertureValue, '37/8');
 
       done();
