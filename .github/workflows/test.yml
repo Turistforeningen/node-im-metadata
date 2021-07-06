@@ -1,0 +1,25 @@
+name: 🧪 Lint, Test & Check Coverage 🧐
+
+on: [push]
+
+jobs:
+  build:
+    name: Test the build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12, 14]
+
+    steps:
+    - uses: "actions/checkout@v2"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup NodeJS ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install packages
+      run: npm install
+    - name: Lint & Test
+      run: npm run test
