@@ -60,4 +60,18 @@ metadata('/path/to/image.jpg', {exif: true}, function(error, metadata) {
 });
 ```
 
+## Contributing
+
+### Prerequisites
+
+```
+$ pip install pre-commit
+```
+
+### Installation
+
+```
+$ pre-commit install --install-hooks
+```
+
 ## [MIT License](https://github.com/Turistforeningen/node-im-metadata/blob/master/LICENSE)
